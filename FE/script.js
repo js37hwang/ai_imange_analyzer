@@ -89,7 +89,7 @@ async function runAnalyze() {
     formData.append('question', question);
 
     try {
-        const res = await fetch('/api/analyze', { method: 'POST', body: formData });
+        const res = await fetch('http://localhost:3000/api/analyze', { method: 'POST', body: formData });
         const data = await res.json();
 
         if (data.success) {
@@ -117,7 +117,7 @@ async function runOcr() {
     formData.append('image', file);
 
     try {
-        const res = await fetch('/api/ocr', { method: 'POST', body: formData });
+        const res = await fetch('http://localhost:3000/api/ocr', { method: 'POST', body: formData });
         const data = await res.json();
 
         if (data.success) {
