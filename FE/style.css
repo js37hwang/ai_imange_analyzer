@@ -33,7 +33,7 @@ body {
 
 header { flex-shrink: 0; }
 h1 { font-size: 1.6rem; font-weight: 800; }
-h1 span { transition: color 0.3s; }
+h1 span { transition: color 0.3s; color: var(--accent-orange);}
 .theme-analyze { color: var(--accent-orange); }
 .theme-ocr { color: var(--accent-green); }
 .subtitle { color: var(--text-secondary); font-size: 0.85rem; }

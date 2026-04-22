@@ -10,7 +10,18 @@ function switchTab(name, btn) {
     titleSpan.className = (name === 'analyze') ? 'theme-analyze' : 'theme-ocr';
 }
 
-// 업로드 공통 모듈
+/**
+ * UI 이미지 업로드 및 미리보기 처리용 공통 모듈
+ * 드래그 앤 드롭, 클릭 업로드, 파일 정보 표시 및 미리보기 기능
+ * 
+ * @param {string} zoneId - 파일을 드롭하거나 클릭할 영역의 HTML ID (Drop Zone)
+ * @param {string} inputId - 실제 파일 선택을 담당하는 hidden input의 HTML ID
+ * @param {string} previewImgId - 선택된 이미지를 보여줄 <img> 태그의 HTML ID
+ * @param {string} previewNameId - 파일 이름과 크기를 표시할 요소의 HTML ID
+ * @param {string} previewWrapId - 미리보기 영역 전체를 감싸는 컨테이너의 HTML ID (파일 선택 시 display 처리)
+ * 
+ * @returns {function(): File|null} 현재 선택된 File 객체를 반환하는 getter 함수 반환
+ */
 function setupUpload(zoneId, inputId, previewImgId, previewNameId, previewWrapId) {
     const zone = document.getElementById(zoneId);
     const input = document.getElementById(inputId);
@@ -78,7 +89,7 @@ async function runAnalyze() {
     formData.append('question', question);
 
     try {
-        const res = await fetch('/analyze', { method: 'POST', body: formData });
+        const res = await fetch('/api/analyze', { method: 'POST', body: formData });
         const data = await res.json();
 
         if (data.success) {
@@ -106,7 +117,7 @@ async function runOcr() {
     formData.append('image', file);
 
     try {
-        const res = await fetch('/ocr', { method: 'POST', body: formData });
+        const res = await fetch('/api/ocr', { method: 'POST', body: formData });
         const data = await res.json();
 
         if (data.success) {
