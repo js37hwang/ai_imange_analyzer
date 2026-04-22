@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 이미지 분석기</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span>AI 이미지 </span>분석기</h1>
+            <p class="subtitle">사용자가 업로드한 이미지 분석과 OCR 텍스트 추출이 진행됩니다.</p>
+        </header>
+
+        <nav class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab('analyze', this)">🔍 이미지 분석</button>
+            <button class="tab-btn" onclick="switchTab('ocr', this)">📄 OCR 추출</button>
+        </nav>
+
+        <!-- 탭 1: 이미지 분석 -->
+        <main class="tab-panel active" id="panel-analyze">
+            <div class="control-side">
+                <section class="card upload-card">
+                    <div class="card-title">이미지 업로드</div>
+                    <div class="upload-zone" id="analyzeUploadZone">
+                        <div class="upload-icon">🖼️</div>
+                        <p>클릭하여 이미지 선택</p>
+                        <span class="upload-hint">PNG, JPG, WEBP (Max 10MB)</span>
+                        <input type="file" id="analyzeFileInput" hidden accept="image/*">
+                    </div>
+                    <div class="preview-wrap" id="analyzePreviewWrap">
+                        <img id="analyzePreviewImg" alt="미리보기">
+                        <div class="preview-name" id="analyzePreviewName"></div>
+                    </div>
+                </section>
+
+                <section class="card question-card">
+                    <div class="card-title">분석 질문</div>
+                    <textarea id="analyzeQuestion" placeholder="이미지에 대해 궁금한 점을 적어주세요.">업로드된 이미지의 텍스트 추출 후 답변이 진행됩니다.</textarea>
+                </section>
+
+                <button class="btn-action" id="analyzeBtn" onclick="runAnalyze()">인사이트 분석 시작</button>
+                <div class="error-box" id="analyzeError" style="display: none; color: #ef4444; font-size: 0.8rem; margin-top: 5px;"></div>
+            </div>
+
+            <div class="display-side">
+                <section class="card result-card" id="analyzeResultCard">
+                    <div class="card-title">분석 리포트</div>
+                    <!-- 초기 상태 숨김 처리 -->
+                    <div class="loading-box" id="analyzeLoading" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>AI 모델이 분석 중입니다...</p>
+                    </div>
+                    <div id="analyzeResultContent" class="scroll-content" style="display: none;">
+                        <div class="result-meta" id="analyzeResultMeta"></div>
+                        <div class="result-label">질문</div>
+                        <div class="result-box" id="analyzeResultQuestion"></div>
+                        <div class="result-label">AI 응답</div>
+                        <div class="result-box" id="analyzeResultAnswer"></div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- 탭 2: OCR -->
+        <main class="tab-panel" id="panel-ocr">
+            <div class="control-side">
+                <section class="card upload-card">
+                    <div class="card-title">문서 이미지 선택</div>
+                    <div class="upload-zone" id="ocrUploadZone">
+                        <div class="upload-icon">📄</div>
+                        <p>추출할 이미지 선택</p>
+                        <input type="file" id="ocrFileInput" hidden accept="image/*">
+                    </div>
+                    <div class="preview-wrap" id="ocrPreviewWrap">
+                        <img id="ocrPreviewImg" alt="미리보기">
+                        <div class="preview-name" id="ocrPreviewName"></div>
+                    </div>
+                </section>
+
+                <button class="btn-action" id="ocrBtn" onclick="runOcr()">텍스트 데이터 추출</button>
+                <div class="error-box" id="ocrError" style="display: none; color: #ef4444; font-size: 0.8rem; margin-top: 5px;"></div>
+            </div>
+
+            <div class="display-side">
+                <section class="card result-card" id="ocrResultCard">
+                    <div class="card-title">추출 데이터</div>
+                    <!-- 초기 상태 숨김 처리 -->
+                    <div class="loading-box" id="ocrLoading" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>텍스트를 인식하는 중입니다...</p>
+                    </div>
+                    <div id="ocrResultContent" class="scroll-content" style="display: none;">
+                        <div class="result-meta" id="ocrResultMeta"></div>
+                        <div class="result-box" id="ocrResultText"></div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
