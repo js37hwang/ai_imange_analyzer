@@ -1,6 +1,7 @@
 ----
 🚀 AI Image Analyzer (feat. 바이브 코딩)
-이 프로젝트는 **Gemini(Google AI)** 와 함께 **'바이브 코딩'** 으로 진행된 AI 기반 이미지 분석 및 OCR 웹 어플리케이션입니다. 로컬 LLM(Ollama)과 클라우드 모델(Gemini), 그리고 전용 OCR 모델을 결합하여 강력한 이미지 분석 기능을 제공합니다.
+🍎 AI 기반 이미지 분석 및 OCR 웹 어플리케이션
+로컬 LLM(Ollama)과 클라우드 모델(Gemini), 그리고 전용 OCR 모델(Chandra)을 결합하여 강력한 이미지 분석 기능을 제공
 ----
 
 ## 🛠 주요 기능
